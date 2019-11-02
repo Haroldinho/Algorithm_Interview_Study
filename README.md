@@ -26,7 +26,7 @@ Note to self: Add a bash or perl command to load the test files automatically to
 ```
 
 ## Data Structures: 
-	Contains few of the LeetCode and HackerRank exercises, I have used in my preparation to coding interviews. 
+Contains a few of the LeetCode and HackerRank exercises, I have used in my preparation for coding interviews. 
 Most of the code included is related to problems I personally found difficult to implement.
 I have therefore tested them on my local machines to enrich my experience, and save my solution.
 All the code in this folder has been implemented in Python.
