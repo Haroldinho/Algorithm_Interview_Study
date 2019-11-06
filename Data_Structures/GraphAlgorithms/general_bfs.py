@@ -9,7 +9,7 @@ def bfs(root: TreeNode):
     my_queue = deque()
     my_queue.append(root)
     while my_queue:
-        node = my_queue.popLeft()
+        node = my_queue.popleft()
         for neighbor in  node.neighbors:
             if neighbor not in visited:
                 my_queue.append(neighbor)
