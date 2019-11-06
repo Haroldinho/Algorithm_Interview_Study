@@ -1,44 +1,42 @@
-class TreeNode:
-    def __init__(self, val):
-        self.val = val
-        self.left = None
-        self.right = None
-
+import heapq
+import unittest
 
 class KthLargest:
 
-    def __init__(self, k: int, nums: List[int]):
-        self._order = k
-        self._root = TreeNode(nums[0])
-        for val in nums[1:]:
-            self.add_node_to_tree(self._root, val)
-            
-    def add_node_to_tree(self, root:TreeNode, val):
-        if root == None:
-            root = TreeNode(val)
-        elif val <= root.val:
-            self.add_node_to_tree(root.left, val)
-        elif val > root.val:
-            self.add_node_to_tree(root.right, val)
-            
-        
-    def add(self, val: int) -> int:
-        self.add_node_to_tree(self._root, val)
-        return self.return_k_val()
-        
-    def return_k_val(self):
-        an_array = self.return_array()
-        return an_array[self._order-1]
-        
-    def return_array(self):
-        def _append_to_array(my_array, node):
-            if node.left:
-                _append_to_array(node.left)
-            my_array += [node.val]
-            if node.right:
-                _append_to_array(node.right)
-        return _append_to_array([],self._root)
+    def __init__(self, k: int, nums):
+        left_array = nums[:-k]
+        right_array = nums[k+1:]
+        self._heap = heapq.heapify(right_array)
+        for num in left_array:
+            self.add(num)
+        self._capacity = k
 
+    def add(self, val):
+        current_kth_val = heapq.heappop(self._heap) # return smallest item from the heap
+        if val > current_kth_val:
+            return_val = heapq.heappushpop(self._heap, val)
+        else:
+            heapq.heappush(self._heap, current_kth_val)
+            return_val = current_kth_val
+        return return_val
+    
+class TestInput1(unittest.TestCase):
+    """
+    Test if we obtain the correct output
+    """
+    def setUp(self):
+        my_array = [4, 5, 8, 2]
+        k =  3
+        self.kthlargest_obj = KthLargest(k, my_array)
+
+    def test1(self):
+        self.assertEqual(self.kthlargest_obj.add(3), 4)
+        self.assertEqual(self.kthlargest_obj.add(5), 5)
+        self.assertEqual(self.kthlargest_obj.add(10), 5)
+        self.assertEqual(self.kthlargest_obj.add(9), 8)
+        self.assertEqual(self.kthlargest_obj.add(4), 8)
+if __name__ == "__main__":
+    unittest.main()
 
 # Your KthLargest object will be instantiated and called as such:
 # obj = KthLargest(k, nums)
