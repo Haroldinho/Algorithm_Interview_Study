@@ -1,7 +1,7 @@
 """
 Implementation of a Binary Search Tree Class
 """
-
+from typing import List
 class TreeNode:
     def __init__(self, val: int):
         self.val = val
@@ -44,6 +44,9 @@ class BinarySearchTree:
         return node
 
     def output_in_sorted_order(self):
+        """
+        in-order traversal of the tree
+        """
         def _append_to_array(my_array, node):
             if node.left:
                 _append_to_array(my_array, node.left)
@@ -89,3 +92,16 @@ class BinarySearchTree:
             root_node.right = self.insert_node(root_node.right, key)
         return root_node
 
+    def rebalanceTree(self):
+        # Create an array using inorder tree-traversal 
+        # Transform the tree into a self_balance_tree starting at the middle
+        sorted_array = self.output_in_sorted_order()
+        def self_balance_tree(array: List[int]) -> TreeNode:
+            if len(array)==0:
+                return None
+            mid_idx = int(len(array)/2)
+            root = TreeNode(array[mid_idx])
+            root.left = self_balance_tree(array[:mid_idx])
+            root.right = self_balance_tree(array[mid_idx+1:])
+            return root
+        return self_balance_tree(sorted_array)

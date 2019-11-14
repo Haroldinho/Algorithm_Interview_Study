@@ -6,7 +6,7 @@ Given an array of integers,
 return a new array such that each element at index i of the new array 
 is the product of all the numbers in the original array except the one at i.
 
-Solution 1: Obtain the product of the entire list, then iterate through the list and divide by each number to return the final list.
+
 """
 
 
