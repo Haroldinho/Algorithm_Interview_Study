@@ -17,7 +17,7 @@ All the assignments have been implemented in C++.
 In addition, most of the assignments have been tested against a battery of unit tests found online for this class using the Catch2 framework.
 I highly recommend anyone serious about learning the material to always test her or his code against simple examples and edge cases.
 
-The test cases were obtained from the followeing directory: [Beaunus-Stanford-algs](https://github.com/beaunus/stanford-algs/).
+The test cases were obtained from the following directory: [Beaunus-Stanford-algs](https://github.com/beaunus/stanford-algs/).
 
 Note to self: Add a bash or perl command to load the test files automatically to a new machine, without having to save the test suite in my own git repo.
 
